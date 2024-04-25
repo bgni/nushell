@@ -39,3 +39,13 @@ def "http auth digest" [--username(-u): string, --password(-p): string, url: str
 	let auth_header = $'Digest username="($username)", realm="($realm)", nonce="($auth_v.nonce)", uri="($uri)", cnonce="($cnonce)", nc=($nc), qop=($qop), response="($response)"'
 	['Authorization',($auth_header) ]
 }
+
+# Usage:
+#
+# let username = "My username"
+# let password = "My password"
+# let full_url = "https://example.com/foo"
+# 
+# let auth_h = http auth digest -u $username -p $password $full_url
+# http get -e --full  --headers $auth_h $full_url
+
